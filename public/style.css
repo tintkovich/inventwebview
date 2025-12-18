@@ -1,0 +1,118 @@
+body {
+    background-color: #fafafa;
+    font-family: Helvetica, sans-serif;
+    line-height: 1.6;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.main-container {
+    margin: 0;
+    padding: 0;
+}
+
+.main-container .main-body .header {
+    padding: 25px 40px 0px 40px;
+}
+
+.header_country .country {
+    font-size: 22px;
+    text-align: left;
+    font-weight: 400;
+    padding-left: 40px;
+    padding-bottom: 10px;
+    padding-top: 0px;
+}
+
+.main-container .main-body .header .header__title {
+    font-size: 22px;
+    text-align: left;
+    font-weight: 400;
+}
+
+.main-container .main-body .header .header__desc {
+    font-size: 14px;
+    color: #999;
+}
+
+.main-container .questions-body {
+    border-top: 1px solid #e5e5e5;
+    background-color: #fff;
+}
+
+.main-container .questions-body .question {
+    padding: 20px;
+}
+
+.main-container .questions-body .question .question__h2 {
+    font-size: 22px;
+    text-align: left;
+    font-weight: 400;
+}
+
+.main-container .questions-body .question .question__read-more {
+    font-size: 14px;
+    color: #999;
+}
+
+.main-container .questions-body .question .question__more {
+    font-size: 18px;
+}
+
+.bottom {
+    background-color: #fff;
+    border-top: 1px solid #ececec;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index: 9;
+}
+
+.bottom .bottom-btn {
+    background-color: #0084ff;
+    width: 95%;
+    margin: auto;
+}
+
+.bottom .bottom-btn .bottom-btn__default {
+    position: relative;
+    display: block;
+    margin: 14px auto;
+    font-size: 18px;
+    text-align: center;
+    text-decoration: none;
+    color: #fff;
+    line-height: 2.55;
+    overflow: hidden;
+}
+
+#nav {
+    padding: 10px 40px 0px 40px;
+}
+
+
+#nav .btn:hover {
+    border-color: #ccd0d5;
+    color: #4b4f56;
+    background-color: #ebedf0;
+}
+
+#nav .btn {
+    border-radius: 2px 0 0 2px;
+    font-family: Helvetica, sans-serif;
+    margin: 14px auto;
+    position: relative;
+    font-size: 18px;
+    line-height: 2;
+    background-color: #ffffff;
+    width: 45%;
+    border: none;
+}
+
+#nav .active {
+    font-weight: bold;
+    background-color: #dddfe2;
+}
