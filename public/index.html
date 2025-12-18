@@ -1,0 +1,327 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset='utf-8'>
+  <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+  <title>FAQ</title>
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+  <link rel='stylesheet' href='style.css'>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  
+  <script>
+    // Lepsze wykrywanie środowiska Messengera
+    function isInMessenger() {
+      try {
+        return typeof MessengerExtensions !== 'undefined' && window.parent !== window;
+      } catch (e) {
+        return false;
+      }
+    }
+
+    // Inicjalizacja tylko w środowisku Messengera
+    window.extAsyncInit = function() {
+      if (isInMessenger()) {
+        try {
+          MessengerExtensions.init({
+            appId: '1411664786462310',
+            pageId: '100165831587997'
+          });
+        } catch (e) {
+          console.error('Initialization error:', e);
+        }
+      } else {
+        console.log('Not in Messenger environment');
+        document.querySelector('.bottom').style.display = 'none';
+      }
+    };
+
+    // Ulepszona obsługa zamykania
+    function closeWindow() {
+      if (isInMessenger()) {
+        MessengerExtensions.requestCloseBrowser(
+          () => console.log('Closed successfully'),
+          (err) => {
+            console.error('Close error:', err);
+            window.location.href = "https://www.messenger.com/closeWindow/";
+          }
+        );
+      } else {
+        window.close();
+      }
+    }
+
+    // Obsługa UI po załadowaniu
+    $(document).ready(function(){
+      // Ukryj przycisk jeśli nie jesteśmy w Messengerze
+      const closeButton = document.querySelector('.bottom');
+      closeButton.style.display = isInMessenger() ? 'block' : 'none';
+
+      // Standardowa funkcjonalność FAQ
+      $(".nav-bottom-btn1").click(function(){
+        $(".faq-zag").hide();
+        $(".faq-pl").show();
+      });
+      
+      $(".nav-bottom-btn2").click(function(){
+        $(".faq-zag").show();
+        $(".faq-pl").hide();
+      });
+
+      $(".btn").click(function(){
+        $(this).addClass("active");
+        $(".btn").not(this).removeClass("active");
+      });
+
+      $('.question__more').addClass('hide');
+      $('.question__read-more').on('click', function(){
+        $(this).next('.question__more').toggleClass('hide');
+      });
+    });
+  </script>
+
+  <!-- Messenger Extensions SDK -->
+  <script>
+    (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s);
+      js.id = id;
+      js.src = "https://connect.facebook.com/en_US/messenger.Extensions.js";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'Messenger'));
+  </script>
+
+
+  <style>
+    .hide {
+      display: none;
+    }
+    article {
+      border-bottom: 1px solid black;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="main-container">
+    <div class="main-body">
+      <div class="header">
+        <h1 class="header__title">Najczęściej zadawane pytania</h1>
+        <p class="header__desc">Poznaj odpowiedzi na pytania.</p>
+      </div>
+
+      <div id="nav">
+        <button type="button" class="nav-bottom-btn1 btn active">FAQ Polska</button>
+        <button type="button" class="nav-bottom-btn2 btn">FAQ Zagranica</button>
+      </div>
+      <div class="faq-pl">
+        <div class="header_country">
+          <h1 class="country">Praca w w Polsce</h1>
+        </div>
+
+        <div class="questions-body" style="cursor:pointer">
+          <div class="question">
+            <h2 class="question__h2">Jaka jest stawka?</h2>
+            <p style="cursor:pointer" data-content="toggle-text" class="question__read-more">Czytaj więcej --></p>
+            <p class="question__more">Stawka dzienna wynosi 30,70 zł/h brutto, liczona jest w godzinach 6:00-22:00.
+              Stawka nocna wynosi 36,60 zł/h brutto, liczona jest w godzinach 22:00-6:00.
+            </p>
+          </div>
+        </div>
+        <div class="questions-body">
+          <div class="question">
+            <h2 class="question__h2">Kiedy jest wypłacane wynagrodzenie?</h2>
+            <p style="cursor:pointer" data-content="toggle-text" class="question__read-more">Czytaj więcej --></p>
+            <p class="question__more">Wynagrodzenie wypłacane jest w formie tygodniówek. Pracownik otrzymuje
+              wynagrodzenie
+              do piątku następującego tydzień po przepracowanej inwentaryzacji.</p>
+          </div>
+        </div>
+        <div class="questions-body">
+          <div class="question">
+            <h2 class="question__h2">Czy firma organizuje transport?</h2>
+            <p style="cursor:pointer" data-content="toggle-text" class="question__read-more">Czytaj więcej --></p>
+            <p class="question__more">Tak. Firma organizuje transport w obie strony na inwentaryzacje wyjazdowe, jest on
+              bezpłatny.
+            </p>
+          </div>
+        </div>
+        <div class="questions-body">
+          <div class="question">
+            <h2 class="question__h2">Gdzie znajdują się terminy inwentaryzacji?
+            </h2>
+            <p style="cursor:pointer" data-content="toggle-text" class="question__read-more">Czytaj więcej --></p>
+            <p class="question__more">Terminy inwentaryzacji widoczne są po zalogowaniu na naszej stronie www.invent.ag
+              w
+              zakładce ,,Dostępne terminy".</p>
+          </div>
+        </div>
+        <div class="questions-body">
+          <div class="question">
+            <h2 class="question__h2">Co z ubezpieczeniem?</h2>
+            <p style="cursor:pointer" data-content="toggle-text" class="question__read-more">Czytaj więcej --></p>
+            <p class="question__more">W dniu pierwszej inwentaryzacji każdy jest zgłaszany do ZUSu, więc ubezpieczenie
+              obejmuje.</p>
+          </div>
+        </div>
+        <div class="questions-body">
+          <div class="question">
+            <h2 class="question__h2">Czy przyjmujecie Niepełnosprawnych?</h2>
+            <p style="cursor:pointer" data-content="toggle-text" class="question__read-more">Czytaj więcej --></p>
+            <p class="question__more">Wszystko zależne jest od stopnia niepełnosprawności oraz czy dana osoba wymaga
+              opieki
+              podczas pracy.</p>
+          </div>
+        </div>
+        <div class="questions-body">
+          <div class="question">
+            <h2 class="question__h2">Jak wysyłacie PIT?</h2>
+            <p style="cursor:pointer" data-content="toggle-text" class="question__read-more">Czytaj więcej --></p>
+            <p class="question__more">PIT wysyłany jest na adres email do końca lutego.</p>
+          </div>
+        </div>
+        <div class="questions-body">
+          <div class="question">
+            <h2 class="question__h2">Czy osoba niepełnoletnia może pracować?</h2>
+            <p style="cursor:pointer" data-content="toggle-text" class="question__read-more">Czytaj więcej --></p>
+            <p class="question__more">Nie, tylko osoby, które ukończyły 18 lat.</p>
+          </div>
+        </div>
+        <div class="questions-body">
+          <div class="question">
+            <h2 class="question__h2">Kiedy jest szkolenie?</h2>
+            <p style="cursor:pointer" data-content="toggle-text" class="question__read-more">Czytaj więcej --></p>
+            <p class="question__more">Szkolenie odbywa się w markecie, przed rozpoczęciem pracy.</p>
+          </div>
+        </div>
+        <div class="questions-body">
+          <div class="question">
+            <h2 class="question__h2">Czy można usunąć konto?</h2>
+            <p style="cursor:pointer" data-content="toggle-text" class="question__read-more">Czytaj więcej --></p>
+            <p class="question__more">Można usunąć konto po zalogowaniu się w profilu.</p>
+          </div>
+        </div>
+      </div>
+      <div class="faq-zag" style="display:none;">
+        <div class="header_country">
+          <h1 class="country">Praca za granicą</h1>
+        </div>
+
+        <div class="questions-body">
+          <div class="question">
+            <h2 class="question__h2">Jak wygląda wynagrodzenie? </h2>
+            <p style="cursor:pointer" class="question__read-more" data-content="toggle-text">Czytaj więcej --></p>
+            <p class="question__more">Wynagrodzenie za jeden dzień pracy wynosi: <br/>
+              
+              &#x2022; od 265 zł na rękę za dzień pracy dla Liczącego,<br/>
+              &#x2022; od 310 zł na rękę za dzień pracy dla Liczącego ze znajomością języka obcego,<br/>
+              &#x2022; od 345 zł na rękę za dzień pracy dla Liczącego posiadającego prawo jazdy kat. B.<br/><br/>
+              Chcesz zarabiać więcej? Zostań z nami dłużej i skorzystaj z premii frekwencyjnej oraz półrocznej. Szczegóły dotyczące premii znajdziesz na naszej stronie <a href="https://www.invent.ag">www.invent.ag</a>
+            
+              </p>
+          </div>
+        </div>
+        <div class="questions-body">
+          <div class="question">
+            <h2 class="question__h2">Ile dni się pracuje?</h2>
+            <p style="cursor:pointer" class="question__read-more" data-content="toggle-text">Czytaj więcej --></p>
+            <p class="question__more">Dni pracujących jest 5 lub 6 w tygodniu, dziennie po około 10 godzin. W zależności
+              od
+              projektu jest jeden lub dwa dni wolne w tygodniu.</p>
+          </div>
+
+        </div>
+        <div class="questions-body">
+          <div class="question">
+            <h2 class="question__h2">Skąd jest transport?</h2>
+            <p style="cursor:pointer" class="question__read-more" data-content="toggle-text">Czytaj więcej --></p>
+            <p class="question__more">Transport jest zapewniony z trzech miast: Wrocławia, Katowic, lub z Legnicy. </p>
+          </div>
+        </div>
+        <div class="questions-body">
+          <div class="question">
+            <h2 class="question__h2">Co z hotelem i jedzeniem?</h2>
+            <p style="cursor:pointer" class="question__read-more" data-content="toggle-text">Czytaj więcej --></p>
+            <p class="question__more">Zakwaterowanie jest zagwarantowane w hostelach, hotelach, pensjonatach, obiektach
+              prywatnych. Pokoje są zazwyczaj 3-4-osobowe, natomiast wyżywienie jest we własnym zakresie. W większości
+              miejsc noclegowych zapewniamy dostęp do kuchni z możliwością samodzielnego przygotowania ciepłego posiłku.
+            </p>
+          </div>
+        </div>
+        <div class="questions-body">
+          <div class="question">
+            <h2 class="question__h2">Czy można wrócić np. Tydzień wcześniej?</h2>
+            <p style="cursor:pointer" class="question__read-more" data-content="toggle-text">Czytaj więcej --></p>
+            <p class="question__more">Można wysłać zgłoszenie, a przy rozmowie telefonicznej podać informację w jakim
+              terminie kandydat może wyjechać i w jakim terminie chciałby wrócić do Polski. </p>
+          </div>
+        </div>
+        <div class="questions-body">
+          <div class="question">
+            <h2 class="question__h2">Czy dostanę zaliczkę?</h2>
+            <p style="cursor:pointer" class="question__read-more" data-content="toggle-text">Czytaj więcej --></p>
+            <p class="question__more">Tak. Jeśli jest to pierwszy wyjazd lub była przerwa między wyjazdami  przynajmniej
+              miesiąc.</p>
+          </div>
+        </div>
+        <div class="questions-body">
+          <div class="question">
+            <h2 class="question__h2">Co z ubezpieczeniem?</h2>
+            <p style="cursor:pointer" class="question__read-more" data-content="toggle-text">Czytaj więcej --></p>
+            <p class="question__more">W dniu pierwszej inwentaryzacji każdy jest zgłaszany do ZUSu, więc ubezpieczenie
+              obejmuje.</p>
+          </div>
+        </div>
+        <div class="questions-body">
+          <div class="question">
+            <h2 class="question__h2">Czy przyjmujecie Niepełnosprawnych?</h2>
+            <p style="cursor:pointer" class="question__read-more" data-content="toggle-text">Czytaj więcej --></p>
+            <p class="question__more">Wszystko zależne jest od stopnia niepełnosprawności oraz czy dana osoba wymaga
+              opieki
+              podczas pracy.</p>
+          </div>
+        </div>
+        <div class="questions-body">
+          <div class="question">
+            <h2 class="question__h2">Jak wysyłacie PIT?</h2>
+            <p style="cursor:pointer" class="question__read-more" data-content="toggle-text">Czytaj więcej --></p>
+            <p class="question__more">PIT wysyłany jest na adres email do końca lutego.</p>
+          </div>
+        </div>
+        <div class="questions-body">
+          <div class="question">
+            <h2 class="question__h2">Czy osoba niepełnoletnia może pracować?</h2>
+            <p style="cursor:pointer" class="question__read-more" data-content="toggle-text">Czytaj więcej --></p>
+            <p class="question__more">Nie, tylko osoby, które ukończyły 18 lat.</p>
+          </div>
+        </div>
+        <div class="questions-body">
+          <div class="question">
+            <h2 class="question__h2">Kiedy jest szkolenie?</h2>
+            <p style="cursor:pointer" class="question__read-more" data-content="toggle-text">Czytaj więcej --></p>
+            <p class="question__more">Szkolenie odbywa się w markecie, przed rozpoczęciem pracy.</p>
+          </div>
+        </div>
+        <div class="questions-body">
+          <div class="question">
+            <h2 class="question__h2">Czy można usunąć konto?</h2>
+            <p style="cursor:pointer" class="question__read-more" data-content="toggle-text">Czytaj więcej --></p>
+            <p class="question__more">Można usunąć konto po zalogowaniu się w profilu.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <div class="bottom">
+      <div class="bottom-btn">
+        <a href="#" onclick="closeWindow()" class="bottom-btn__default">⬅️ Wróć do bota!!!</a>
+      </div>
+    </div>
+
+   
+
+</body>
+
+</html>
